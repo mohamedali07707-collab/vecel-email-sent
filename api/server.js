@@ -9,14 +9,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // قراءة ملفات الـ Front-end الثابتة
+// قراءة ملفات الـ Front-end الثابتة
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
-// مسار عرض الصفحة الرئيسية
+// مسار عرض الصفحة الرئيسية (تعديل المسار ليعمل كـ Serverless بنجاح)
 app.get('/', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
   res.sendFile(path.join(__dirname, '../view/index.html'));
 });
+
 
 // مسار استقبال البيانات وإرسال الإيميل
 app.post('/send-email', (req, res) => {
